@@ -4,6 +4,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 
 import { sliderData } from "./slider-data";
 import "./Slider.css";
+import { useNavigate } from "react-router-dom";
 
 const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -38,6 +39,13 @@ const Slider = () => {
      return () => clearInterval(slideInterval);
   }, [currentSlide]);
 
+  // --> changing slide
+  const navigate = useNavigate();
+  const navigateToMenu = () => {
+    navigate('/menu');
+  };
+
+
   return (
     <div className="slider">
        <AiOutlineArrowLeft className="arrow prev" onClick={prevSlide} />
@@ -53,7 +61,7 @@ const Slider = () => {
                     <h2>{slide.heading}</h2>
                     <p>{slide.desc}</p>
                     <hr />
-                    <button className="btn"> Take a bite! </button>
+                    <button className="btn" onClick={navigateToMenu}> Take a bite! </button>
 
                   </div>
                 </>

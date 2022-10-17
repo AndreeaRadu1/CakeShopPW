@@ -6,8 +6,16 @@ import Avatar from "C:/Users/radua/OneDrive/Desktop/Proiect final PW/client/src/
 
 import { MdOutlineShoppingBasket } from "react-icons/md";
 import { MdFavoriteBorder } from "react-icons/md";
+import { IoMdArrowDropdown }  from "react-icons/io";
+
+import { useNavigate } from "react-router-dom";
+
+import "./navbar.css";
 
 function MainNavigation() {
+
+    const navigate = useNavigate();
+
     return (
       <header className="fixed w-screen z-50 p-6 px-16">
           <div className="hidden md:flex w-full h-full items-center justify-between">
@@ -52,8 +60,22 @@ function MainNavigation() {
                       </Link>
                   </div> 
   
-                  <img src={ Avatar } className="w-12 mim-w-[40px] h-12 min-h-[40px] drop-shadow-x1 cursor-pointer"></img>
-  
+                  <div>
+                    <Link to='/login'>
+                        <img src={ Avatar } className="w-12 mim-w-[40px] h-12 min-h-[40px] drop-shadow-x1 cursor-pointer"></img>
+                    </Link>
+                  </div>
+
+                  <div className="dropdown">
+                       <IoMdArrowDropdown />
+                       <div className="dropdown-content">
+                          <a href="#" onClick={() => {
+                            localStorage.removeItem("userInfo");
+                            navigate("/");
+                          }}>Logout!</a>
+                       </div>
+                  </div>
+                  
               </div>
           </div>
   

@@ -10,6 +10,8 @@ import OrderCakePage from "./pages/OrderCake";
 import GalleryPage from "./pages/Gallery";
 import FavoritesPage from "./pages/Favorites";
 import CartPage from "./pages/Cart";
+import LoginPage from "./pages/Login";
+import RegisterPage from "./pages/Register";
 import Layout from "./components/layout/Layout";
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/favorites" element={<FavoritesPage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
           </Routes>
         </Layout>
     </div>

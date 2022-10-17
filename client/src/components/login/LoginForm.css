@@ -1,0 +1,83 @@
+
+.backgroundL{
+    /*background-color: rgb(245 208 254);*/
+    background-image: url("https://c4.wallpaperflare.com/wallpaper/39/624/1001/colorful-dessert-pink-cakes-wallpaper-preview.jpg");
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   
+}
+
+
+.GlassForm{
+    height: 21rem/* 384px */;
+    width: 20rem/* 384px */;
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+    --tw-bg-opacity: 0.2;
+    position: relative;
+    z-index: 2;
+    border-radius: 1rem/* 16px */;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+    border-width: 1px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    --tw-border-opacity: 0.3;
+}
+
+.form{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.text{
+    font-family: Dancing Script;
+    font-weight: bold;
+    font-size: 1.3rem;
+    line-height: 2rem;
+    letter-spacing: 0.05em;
+}
+
+.credentials{
+    font-family: Dancing Script;
+    background-color: none;
+    background-color: transparent;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    border-width: 1px;
+    border-right-width: 0px;
+    border-top-width: 0px;
+    border-left-width: 0px;
+    letter-spacing: 0.025em;
+}
+
+.btn{
+    font-family: Dancing Script;
+    cursor: pointer;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    border-radius: 9999px;
+}
+
+.btn:hover{
+    opacity: .9;
+}
+
+.register{
+    color: rgb(36, 35, 35);
+    font-size: medium;
+    font-family: Dancing Script;
+}
+
+.spanUnderline{
+    text-decoration: underline;
+}

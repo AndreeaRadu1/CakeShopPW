@@ -3,6 +3,8 @@ const mongoose = require('mongoose');// helps us to interact with MongoDB databa
 const bodyParser = require('body-parser'); //allows us to take request and get data from the body
 
 const products = require('./routes/api/products');
+const userRoutes = require('./routes/api/userRoutes');
+const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
 
 const app = express(); //initialize express
 
@@ -19,7 +21,12 @@ mongoose
    .catch(err => console.log(err));
 
 //Use Routes
+app.use('/api/users', userRoutes);
 app.use('/api/products', products);
+
+//pt a afisa mesajul de erore in postman, daca exista
+app.use(notFound);
+app.use(errorHandler);
 
 const port = process.env.PORT || 5000;
 
