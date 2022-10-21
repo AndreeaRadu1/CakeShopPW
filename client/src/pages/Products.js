@@ -1,8 +1,11 @@
 import React from 'react'
+import Sidebar from "../components/sidebar/Sidebar";
 
 function MenuPage() {
   return (
-    <div>MenuPage</div>
+    <div>
+      <Sidebar />
+    </div>
   );
 }
 

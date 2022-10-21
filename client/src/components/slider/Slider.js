@@ -7,7 +7,7 @@ import "./Slider.css";
 import { useNavigate } from "react-router-dom";
 
 const Slider = () => {
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const [currentSlide, setCurrentSlide] = useState(0);
   const slideLength = sliderData.length;
   //slideLength= 1 2 3 4 5
   //currentSlide =0 1 2 3 4

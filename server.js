@@ -5,11 +5,14 @@ const bodyParser = require('body-parser'); //allows us to take request and get d
 const products = require('./routes/api/products');
 const userRoutes = require('./routes/api/userRoutes');
 const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
+const cors = require("cors");
 
 const app = express(); //initialize express
 
 //Bodyparser Middleware
 app.use(bodyParser.json());
+
+app.use(cors());
 
 // DB Config
 const db = require('./config/keys').mongoURI;

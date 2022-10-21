@@ -19,7 +19,11 @@ router.get('/', (req, res) => {
 // @access Public
 router.post('/', (req, res) => {
     const newProduct = new Product({
-        name: req.body.name
+        category: req.body.category,
+        name: req.body.name,
+        ingredients: req.body.ingredients,
+        price: req.body.price,
+        image: req.body.image
     });
 
     newProduct.save()
