@@ -1,8 +1,11 @@
 import React from 'react'
+import FavoritesComponent from '../components/favorites/FavoritesComponent';
 
 function FavoritesPage() {
-  return (
-    <div>FavoritesPage</div>
+  return(
+    <div>
+      <FavoritesComponent />
+    </div>
   );
 }
 

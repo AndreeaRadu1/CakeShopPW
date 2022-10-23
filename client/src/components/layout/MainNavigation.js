@@ -9,10 +9,14 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { IoMdArrowDropdown }  from "react-icons/io";
 
 import { useNavigate } from "react-router-dom";
+import { useContext } from 'react';
+
+import FavoritesContext from '../../store/favorite-context';
 
 import "./navbar.css";
 
 function MainNavigation() {
+    const favoritesCtx = useContext(FavoritesContext);
 
     const navigate = useNavigate();
 
@@ -45,9 +49,14 @@ function MainNavigation() {
                   <div className="relative flex items-center justify-center gap-5">
                       <Link to='/favorites'>
                           <MdFavoriteBorder className="text-textColor text-2xl cursor-pointer"/>
-                          {/*<div className="absolute -top-1 -right-2.5 w-3.5 h-3.5 rounded-full bg-cartNumBg flex items-center justify-center ">
-                                <p className="text-xs text-white font-semibold">2</p> 
-                             </div>  */}
+                          {favoritesCtx.totalFavorites ? 
+                             <div className="absolute -top-1 -right-2.5 w-3.5 h-3.5 rounded-full bg-cartNumBg flex items-center justify-center ">
+                                   <p className="text-xs text-white font-semibold">{favoritesCtx.totalFavorites}</p> 
+                             </div>    
+                             :
+                             <div></div>                        
+                          }
+
                       </Link>
                   </div>
   

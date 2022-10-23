@@ -1,53 +1,3 @@
-/*import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-
-export default function RecipeReviewCard() {
-  return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardHeader
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
-      />
-      <CardMedia
-        component="img"
-        height="194"
-        image="https://www.abouttimemagazine.co.uk/wp-content/uploads/2016/04/BeasofBloomsbury.jpg"
-        alt="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-      </CardActions>
-    </Card>
-  );
-}
-*/
-
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -59,8 +9,44 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
 import "./Card.css";
+import Popup from '../popup/Popup';
+import { useContext, useState } from 'react';
+import FavoritesContext from '../../store/favorite-context';
+import { useNavigate } from 'react-router-dom';
 
 export default function ImgMediaCard(props) {
+
+  const favoritesCtx = useContext(FavoritesContext);
+  const itemIsFavorite = favoritesCtx.itemIsFavorite(props.id);
+  const [isShown, setIsShown] = useState(false);
+  function toggleFavoriteStatusHandler() {
+    if(localStorage.getItem("userInfo")){
+        if(itemIsFavorite) {
+          favoritesCtx.removeFavorite(props.id);
+        }else{
+          favoritesCtx.addFavorite({
+            id: props.id,
+            name: props.name,
+            category: props.category,
+            ingredients: props.ingredients,
+            price: props.price,
+            image: props.image,         
+          });
+        }
+    }else{
+      //window.prompt("Please login or create an account!");
+      setIsShown(true);
+    }
+
+
+  }
+
+  const navigate = useNavigate();
+  const navigateToOrderCake = () => {
+    navigate('/order-cake');
+  }
+
+
   return (
     <Card style={{ width: '13rem' }}>
       <CardMedia
@@ -80,36 +66,27 @@ export default function ImgMediaCard(props) {
           </Typography>
         </CardContent>
         <CardActions disableSpacing style={{ height: '2rem'}}>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
+         
+         {itemIsFavorite ? 
+            <IconButton aria-label="add to favorites">
+              <FavoriteIcon onClick={toggleFavoriteStatusHandler} className="colorIconChangeFav" />
+            </IconButton> 
+            :           
+            <IconButton aria-label="add to favorites">
+              <FavoriteIcon onClick={toggleFavoriteStatusHandler} className="colorIconChange" />
+            </IconButton>
+        }
+
+        {/*  <IconButton aria-label="add to favorites" >
+            <FavoriteIcon onClick={toggleFavoriteStatusHandler} />
+        </IconButton> */}
           <IconButton aria-label="buy">
-            <ShoppingBasketIcon />
+            <ShoppingBasketIcon onClick={navigateToOrderCake} />
           </IconButton>
         </CardActions>
+
+        {isShown && <Popup />}
       </div>
     </Card>
   );
 }
-
-/*
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-
-function BasicExample(props) {
-  return (
-    <Card style={{ width: '13rem' }}>
-      <Card.Img variant="top" src={props.image} className='cardProductsDoi' />
-      <Card.Body>
-        <Card.Title>{props.name}</Card.Title>
-        <Card.Text>
-          {props.ingredients}
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-  );
-}
-
-export default BasicExample;
-*/
