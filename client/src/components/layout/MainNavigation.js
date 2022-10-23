@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Logo from "C:/Users/radua/OneDrive/Desktop/Proiect final PW/client/src/img/CakeLogo.png";
@@ -20,6 +20,26 @@ function MainNavigation() {
 
     const navigate = useNavigate();
 
+    
+    const [user,setUser] = useState("");
+    useEffect(() => {
+        setUser(localStorage.getItem("userInfo"));
+        getUserEmail();
+       // userEmail = JSON.parse(user).email;
+    },[getUserEmail]);
+
+    const [userEmail,setUserEmail] = useState("");
+    function getUserEmail(){
+        try {
+            const u = JSON.parse(user);
+            setUserEmail(u.email);
+            console.log(u.email);
+          } catch (ex) {
+            setUserEmail(null);
+            return null; 
+          }
+    }
+    
     return (
       <header className="fixed w-screen z-50 p-6 px-16">
           <div className="hidden md:flex w-full h-full items-center justify-between">
@@ -77,17 +97,35 @@ function MainNavigation() {
 
                   <div className="dropdown">
                        <IoMdArrowDropdown />
-                       <div className="dropdown-content">
-                          <a href="#" onClick={() => {
-                            localStorage.removeItem("userInfo");
-                            navigate("/");
-                          }}>Logout!</a>
-                       </div>
+                       {
+                           userEmail !== "admin@gmail.com" ?
+                             <div className="dropdown-content">
+                               <a href="#" onClick={() => {
+                                 localStorage.removeItem("userInfo");
+                                 navigate("/");
+                               }}>Logout!</a>
+                             </div>
+                            :
+                            <div className="dropdown-content">
+                               <a href="#" onClick={() => {
+                                 navigate("/");
+                               }}>Add!</a>
+                               <a href="#" onClick={() => {
+                                 navigate("/");
+                               }}>Delete!</a>
+                               <a href="#" onClick={() => {
+                                 navigate("/");
+                               }}>Update!</a>
+                               <a href="#" onClick={() => {
+                                 localStorage.removeItem("userInfo");
+                                 navigate("/");
+                               }}>Logout!</a>
+                             </div>
+                       }
                   </div>
                   
               </div>
           </div>
-  
   
           <div></div>
       </header>

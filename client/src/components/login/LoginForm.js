@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import axios from "axios";
 import ErrorMessage from './ErrorMessage';
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
 
@@ -25,6 +25,7 @@ function LoginForm() {
     }
   }, [navigate]);*/
 
+  const navigate = useNavigate();
   const submitHandler = async (e) => {
     e.preventDefault();
     
@@ -54,6 +55,7 @@ function LoginForm() {
       setError(error.response.data.message);
       setLoading(false);
     }
+    navigate('/menu');
   };
 
 

@@ -1,8 +1,11 @@
 import React from 'react'
+import OrderCake from '../components/orderCake/OrderCake';
 
 function OrdserCakePage() {
   return (
-    <div>OrdserCakePage</div>
+    <div>
+      <OrderCake />
+    </div>
   );
 }
 

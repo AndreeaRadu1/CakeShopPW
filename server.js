@@ -5,6 +5,7 @@ const bodyParser = require('body-parser'); //allows us to take request and get d
 const products = require('./routes/api/products');
 const userRoutes = require('./routes/api/userRoutes');
 const gallery = require('./routes/api/gallery');
+const orders = require('./routes/api/orders');
 const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
 const cors = require("cors");
 
@@ -28,6 +29,7 @@ mongoose
 app.use('/api/users', userRoutes);
 app.use('/api/products', products);
 app.use('/api/gallery', gallery);
+app.use('/api/orders', orders);
 
 //pt a afisa mesajul de erore in postman, daca exista
 app.use(notFound);

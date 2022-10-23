@@ -3,6 +3,7 @@ import "./RegisterForm.css";
 import Tilt from 'react-parallax-tilt';
 import ErrorMessage from '../login/ErrorMessage';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function RegisterForm() {
   
@@ -14,6 +15,8 @@ function RegisterForm() {
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(false);
   
+  const navigate = useNavigate();
+
   const submitHandler = async (e) => {
     e.preventDefault();
 
@@ -52,6 +55,7 @@ function RegisterForm() {
     }
     
     console.log(email);
+    navigate('/menu');
 
   }
 
