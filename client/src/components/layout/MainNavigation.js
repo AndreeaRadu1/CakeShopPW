@@ -108,13 +108,13 @@ function MainNavigation() {
                             :
                             <div className="dropdown-content">
                                <a href="#" onClick={() => {
-                                 navigate("/");
+                                 navigate("/addProductAdmin");
                                }}>Add!</a>
                                <a href="#" onClick={() => {
-                                 navigate("/");
+                                 navigate("/deleteProductAdmin");
                                }}>Delete!</a>
                                <a href="#" onClick={() => {
-                                 navigate("/");
+                                 navigate("/updateProductAdmin");
                                }}>Update!</a>
                                <a href="#" onClick={() => {
                                  localStorage.removeItem("userInfo");

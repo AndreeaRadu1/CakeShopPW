@@ -41,5 +41,30 @@ router.delete('/:id', (req, res) => {
                             .json({success: false}));
         });
        
+// @route PUT api/products/:id
+// @desc Update A Product
+// @access Public
+router.put('/:id', (req, res) => {
+        
+        Product.findOneAndUpdate({_id:req.params.id},{
+            $set:{
+                category: req.body.category,
+                name: req.body.name,
+                ingredients: req.body.ingredients,
+                price: req.body.price,
+                image: req.body.image
+            }
+        })
+        .then(result =>{
+            res.status(200)
+               .json({updated_product:result})
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(404)
+               .json({success: false})
+        }) 
+});
+
 
 module.exports = router;
