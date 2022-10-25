@@ -90,9 +90,15 @@ function MainNavigation() {
                   </div> 
   
                   <div>
-                    <Link to='/login'>
-                        <img src={ Avatar } className="w-12 mim-w-[40px] h-12 min-h-[40px] drop-shadow-x1 cursor-pointer"></img>
-                    </Link>
+                    {localStorage.getItem("userInfo") ? 
+                      <Link to='/'>
+                          <img src={ Avatar } className="w-12 mim-w-[40px] h-12 min-h-[40px] drop-shadow-x1 cursor-pointer"></img>
+                      </Link>
+                      :
+                      <Link to='/login'>
+                          <img src={ Avatar } className="w-12 mim-w-[40px] h-12 min-h-[40px] drop-shadow-x1 cursor-pointer"></img>
+                      </Link> 
+                    }
                   </div>
 
                   <div className="dropdown">
