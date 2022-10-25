@@ -10,7 +10,6 @@ function Sidebar() {
   
   //posts va contine toate produsele din baza de date
   const [posts, setPosts] = useState([]);
-  const [msj, setMsj] = useState("Please select a category!"); 
 
   useEffect(() => {
     axios.get('http://localhost:5000/api/products')
@@ -25,6 +24,7 @@ function Sidebar() {
   
   //categoryProducts va contine doar produsele dintr-o anumita categorie
   const [categoryProducts, setCategoryProducts] = useState(posts);
+  const [visibilityAllProducts, setVisibilityAllProducts] = useState(true);
 
   const filterResult = (category) => {
     const result = posts.filter((currentData) => {
@@ -32,7 +32,7 @@ function Sidebar() {
     });
 
     setCategoryProducts(result);
-    setMsj(false);
+    setVisibilityAllProducts(false);
   } 
 
   return (
@@ -70,7 +70,19 @@ function Sidebar() {
                       image={product.image}
                  />
                ))} 
-               <p className='mesaj'>{msj}</p>  
+               
+               {visibilityAllProducts ? 
+                    posts.map(product => (
+                     <Card 
+                          key={product._id}
+                          id={product._id}
+                          name={product.name}
+                          category={product.category}
+                          ingredients={product.ingredients}
+                          price={product.price}
+                          image={product.image}
+                     />)) 
+                     : ""}
   
              </div>
    
