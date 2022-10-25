@@ -1,8 +1,11 @@
 import React from 'react'
+import ClientOrders from '../components/clientOrders/ClientOrders';
 
 function CartPage() {
   return (
-    <div>Page</div>
+    <div>
+      <ClientOrders />
+    </div>
   );
 }
 

@@ -42,7 +42,12 @@ const OrderSchema = new Schema({
     message: {
        type: String,
        required: false
-    }
+    },
+    status: {
+        type: String,
+        required: false,
+        default: "Order received"
+     }
 });
 
 module.exports = Order = mongoose.model('Order', OrderSchema);
