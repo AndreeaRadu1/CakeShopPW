@@ -121,7 +121,7 @@ function MainNavigation() {
                                }}>Add a category!</a>
                                <a href="#" onClick={() => {
                                  navigate("/deleteProductAdmin");
-                               }}>Delete!</a>
+                               }}>Delete a product!</a>
                                <a href="#" onClick={() => {
                                  navigate("/updateProductAdmin");
                                }}>Update!</a>

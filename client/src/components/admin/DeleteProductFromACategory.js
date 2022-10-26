@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from "axios";
 import ErrorMessage from '../login/ErrorMessage';
 import { useNavigate } from "react-router-dom";
@@ -36,6 +36,19 @@ function DeleteProductFromACategory() {
         
         navigate('/menu');
     }
+
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+      axios.get('http://localhost:5000/api/categories')
+           .then( response => {
+              console.log(response);
+              setCategories(response.data);  
+           })
+           .catch(err => {
+             console.log(err);
+           })
+    }, []); 
   
     return (
       <div className='backgroundAdmin'>
@@ -48,38 +61,17 @@ function DeleteProductFromACategory() {
               <div className='navbarAdmin'></div>
               <div className='descriptionAction'>
                   <p className='decorationText'>Delete a product!</p>
-                  <p className='decorationText'>Possible categories:</p>
-                <ul className='conditionsAdmin'>
-                    <li className='listOrderAdmin'>
-                    types of cake
-                    </li>
-                    <li className='listOrderAdmin'>
-                    birthday cake   
-                    </li>
-                    <li className='listOrderAdmin'>
-                    wedding cake   
-                    </li>
-                    <li className='listOrderAdmin'>
-                    kids cake   
-                    </li>
-                    <li className='listOrderAdmin'>
-                    celebration cakes   
-                    </li>
-                    <li className='listOrderAdmin'>
-                    mini cakes   
-                    </li>
-                    <li className='listOrderAdmin'>
-                    cupcakes & others   
-                    </li>
-                    <li className='listOrderAdmin'>
-                    gifts   
-                    </li>
-                </ul>
               </div>
               <div className='DeleteProductForm'>
                   <form onSubmit={submitAdminHandler}>
                       <div>
-                           <input type="text" value={category} placeholder="Category" onChange={(e) => setCategory(e.target.value)} className="credentialsAdmin" />       
+                           <select value={category} onChange={(e) => setCategory(e.target.value) } className="credentialsAdmin">
+                            {
+                              categories.map(categ =>
+                                   <option>{categ.category}</option>
+                                )   
+                            }                  
+                           </select>
                       </div>
                       <div>
                            <input type="text" value={name} placeholder="Name of the product" onChange={(e) => setName(e.target.value)} className="credentialsAdmin" />      

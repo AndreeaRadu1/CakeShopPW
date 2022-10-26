@@ -1,6 +1,6 @@
 import React from 'react'
 import './admin.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ErrorMessage from '../login/ErrorMessage';
@@ -43,21 +43,28 @@ function AddProductByCategory() {
             image,
           },
           config
-        );
-
-       
+        );      
       }catch (error) {
         setError(error.response.data.message);
       }
-
-    }
-    
+    }  
     navigate('/menu');
-
   }
 
+  const [categories, setCategories] = useState([]);
 
-  
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/categories')
+         .then( response => {
+            console.log(response);
+            setCategories(response.data);  
+         })
+         .catch(err => {
+           console.log(err);
+         })
+  }, []); 
+
+
 
   return (
     <div className='backgroundAdmin'>
@@ -69,38 +76,17 @@ function AddProductByCategory() {
             <div className='navbarAdmin'></div>
             <div className='descriptionAction'>
                 <p className='decorationText'>Add a new product!</p>
-                <p className='decorationText'>Possible categories:</p>
-                <ul className='conditionsAdmin'>
-                    <li className='listOrderAdmin'>
-                    types of cake
-                    </li>
-                    <li className='listOrderAdmin'>
-                    birthday cake   
-                    </li>
-                    <li className='listOrderAdmin'>
-                    wedding cake   
-                    </li>
-                    <li className='listOrderAdmin'>
-                    kids cake   
-                    </li>
-                    <li className='listOrderAdmin'>
-                    celebration cakes   
-                    </li>
-                    <li className='listOrderAdmin'>
-                    mini cakes   
-                    </li>
-                    <li className='listOrderAdmin'>
-                    cupcakes & others   
-                    </li>
-                    <li className='listOrderAdmin'>
-                    gifts   
-                    </li>
-                </ul>
             </div>
             <div className='AddProductForm'>
                 <form onSubmit={submitAdminHandler}>
                     <div>
-                         <input type="text" value={category} placeholder="Category" onChange={(e) => setCategory(e.target.value)} className="credentialsAdmin" />       
+                         <select value={category} onChange={(e) => setCategory(e.target.value) } className="credentialsAdmin">
+                          {
+                            categories.map(categ =>
+                                 <option>{categ.category}</option>
+                              )   
+                          }                  
+                         </select>
                     </div>
                     <div>
                          <input type="text" value={name} placeholder="Name of the new product" onChange={(e) => setName(e.target.value)} className="credentialsAdmin" />      
