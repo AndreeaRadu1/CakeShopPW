@@ -1,8 +1,11 @@
 import React from 'react'
+import AddCategory from '../components/admin/AddCategory';
 
 function AddCategoryAdminPage() {
   return (
-    <div>AddCategoryAdmin</div>
+    <div>
+      <AddCategory />
+    </div>
   );
 }
 
