@@ -123,6 +123,9 @@ function MainNavigation() {
                                  navigate("/deleteProductAdmin");
                                }}>Delete a product!</a>
                                <a href="#" onClick={() => {
+                                 navigate("/deleteCategoryAdmin");
+                               }}>Delete a category!</a>
+                               <a href="#" onClick={() => {
                                  navigate("/updateProductAdmin");
                                }}>Update!</a>
                                <a href="#" onClick={() => {
