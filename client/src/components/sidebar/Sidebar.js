@@ -1,6 +1,5 @@
 import React from 'react';
 import "./Sidebar.css";
-import { SidebarData } from './SidebarData';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Card from '../ui/Card';
@@ -21,6 +20,20 @@ function Sidebar() {
            console.log(err);
          })
   }, []); // al doilea parametru este pt a face fetch doar o sg data
+
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/categories')
+         .then( response => {
+            console.log(response);
+            setCategories(response.data);  //will update the posts state variable
+           // array.push(categories);
+         })
+         .catch(err => {
+           console.log(err);
+         })
+  }, []); 
   
   //categoryProducts va contine doar produsele dintr-o anumita categorie
   const [categoryProducts, setCategoryProducts] = useState(posts);
@@ -43,7 +56,7 @@ function Sidebar() {
    
              <div className="sidebar md-3">
                <ul className="SidebarList">
-                   {SidebarData.map((val, key) => {
+                   {categories.map((val, key) => {
                       return (
                           <li 
                              key={key} 

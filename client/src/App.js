@@ -15,6 +15,8 @@ import RegisterPage from "./pages/Register";
 import AddProductAdminPage from "./pages/AddProductAdmin";
 import DeleteProductAdminPage from "./pages/DeleteProductAdmin";
 import UpdateProductAdminPage from "./pages/UpdateProductAdmin";
+import AddCategoryAdminPage from "./pages/AddCategoryAdmin";
+import DeleteCategoryAdminPage from "./pages/DeleteCategoryAdmin";
 import Layout from "./components/layout/Layout";
 
 function App() {
@@ -32,7 +34,9 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/addProductAdmin" element={<AddProductAdminPage />} />
+            <Route path="/addCategoryAdmin" element={<AddCategoryAdminPage />} />
             <Route path="/deleteProductAdmin" element={<DeleteProductAdminPage />} />
+            <Route path="/deleteCategoryAdmin" element={<DeleteCategoryAdminPage />} />
             <Route path="/updateProductAdmin" element={<UpdateProductAdminPage />} />
           </Routes>
         </Layout>

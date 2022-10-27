@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import axios from "axios";
 import ErrorMessage from '../login/ErrorMessage';
@@ -58,6 +58,19 @@ function UpdateAProductByCategoryAndName() {
         navigate('/menu');
   
     }
+
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+      axios.get('http://localhost:5000/api/categories')
+           .then( response => {
+              console.log(response);
+              setCategories(response.data);  
+           })
+           .catch(err => {
+             console.log(err);
+           })
+    }, []); 
   
     return (
       <div className='backgroundAdmin'>
@@ -102,7 +115,13 @@ function UpdateAProductByCategoryAndName() {
               <div className='AddProductForm'>
                   <form onSubmit={submitAdminHandler}>
                       <div>
-                           <input type="text" value={category} placeholder="Category" onChange={(e) => setCategory(e.target.value)} className="credentialsAdminUpdate" />       
+                           <select value={category} onChange={(e) => setCategory(e.target.value) } className="credentialsAdmin">
+                            {
+                              categories.map(categ =>
+                                   <option>{categ.category}</option>
+                                )   
+                            }                  
+                           </select>                          
                       </div>
                       <div>
                            <input type="text" value={id} placeholder="Product id" onChange={(e) => setId(e.target.value)} className="credentialsAdminUpdate" />       

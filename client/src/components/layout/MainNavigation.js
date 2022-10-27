@@ -115,10 +115,16 @@ function MainNavigation() {
                             <div className="dropdown-content">
                                <a href="#" onClick={() => {
                                  navigate("/addProductAdmin");
-                               }}>Add!</a>
+                               }}>Add a product!</a>
+                               <a href="#" onClick={() => {
+                                 navigate("/addCategoryAdmin");
+                               }}>Add a category!</a>
                                <a href="#" onClick={() => {
                                  navigate("/deleteProductAdmin");
-                               }}>Delete!</a>
+                               }}>Delete a product!</a>
+                               <a href="#" onClick={() => {
+                                 navigate("/deleteCategoryAdmin");
+                               }}>Delete a category!</a>
                                <a href="#" onClick={() => {
                                  navigate("/updateProductAdmin");
                                }}>Update!</a>
