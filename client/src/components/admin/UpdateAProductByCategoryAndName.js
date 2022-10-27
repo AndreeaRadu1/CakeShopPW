@@ -84,33 +84,6 @@ function UpdateAProductByCategoryAndName() {
               <div className='navbarAdmin'></div>
               <div className='descriptionAction'>
                   <p className='decorationText'>Update a product!</p>                  
-                  <p className='decorationText'>Possible categories:</p>
-                  <ul className='conditionsAdmin'>
-                    <li className='listOrderAdmin'>
-                    types of cake
-                    </li>
-                    <li className='listOrderAdmin'>
-                    birthday cake   
-                    </li>
-                    <li className='listOrderAdmin'>
-                    wedding cake   
-                    </li>
-                    <li className='listOrderAdmin'>
-                    kids cake   
-                    </li>
-                    <li className='listOrderAdmin'>
-                    celebration cakes   
-                    </li>
-                    <li className='listOrderAdmin'>
-                    mini cakes   
-                    </li>
-                    <li className='listOrderAdmin'>
-                    cupcakes & others   
-                    </li>
-                    <li className='listOrderAdmin'>
-                    gifts   
-                    </li>
-                </ul>
               </div>
               <div className='AddProductForm'>
                   <form onSubmit={submitAdminHandler}>
